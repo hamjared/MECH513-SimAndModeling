@@ -1,0 +1,72 @@
+% THIS PROGRAM COMPARES THE EXPERIMENTAL LIFT SLOPE OF 
+
+clear 
+close all;
+
+
+x_foil_batch_v2('NACA0018_standard',160000);% Assemble the CFD batch code using airfoil geometry
+dos run_Xfoil.bat; % run the CFD program at a MATLAB DOS prompt
+[polar_out] = polar_maker_xfoil_NACA('Sandia_STAND','0012');  % assemble the computational results
+
+[data0012,TXT]=xlsread('SANDIA Data.xls','NACA0012 Re=160k'); % read in the experimental results
+[data0015,TXT]=xlsread('SANDIA Data.xls','NACA0015 Re=160k');% read in the experimental results
+[data0018,TXT]=xlsread('SANDIA Data.xls','NACA0018 Re=160k','');% read in the experimental results
+[data0021,TXT]=xlsread('SANDIA Data.xls','NACA0021 Re=160k');% read in the experimental results
+
+
+
+
+%%% Plotting of Results %%%
+figure;  plot(polar_out(:,1), polar_out(:,2))
+hold on; plot(polar_out(:,1), 2*pi*deg2rad(polar_out(:,1)))
+
+xlabel('Angle of Attack, deg'); 
+% hold on ; plot(polar_out(:,1), polar_out(:,3),'r')
+ylabel(' C_L')
+legend('Section Lift Coefficient Simulated')
+hold on ; plot(data0012(:,1)-180, data0012(:,2),'bo'); plot(data0012(:,1), data0012(:,2),'bo')
+% hold on ; plot(data0012(:,1)-180, data0012(:,3),'ro'); plot(data0012(:,1), data0012(:,3),'ro')
+hold on ; plot(data0015(:,1)-180, data0015(:,2),'bo'); plot(data0015(:,1), data0015(:,2),'bo')
+% hold on ; plot(data0015(:,1)-180, data0015(:,3),'ro'); plot(data0015(:,1), data0015(:,3),'ro')
+hold on ; plot(data0018(:,1)-180, data0018(:,2),'bo'); plot(data0018(:,1), data0018(:,2),'bo')
+% hold on ; plot(data0018(:,1)-180, data0018(:,3),'ro'); plot(data0018(:,1), data0018(:,3),'ro')
+hold on ; plot(data0021(:,1)-180, data0021(:,2),'bo'); plot(data0021(:,1), data0021(:,2),'bo')
+% hold on ; plot(data0021(:,1)-180, data0021(:,3),'ro'); plot(data0021(:,1), data0021(:,3),'ro')
+axis([0 10 0 1])
+legend('Section Lift Coefficient, CFD Simulated','Section Lift Coefficient, Thin Airfoil Theory Simulated', 'Section Lift Coefficient, Experiment')
+
+
+%%%%%%%%%% Organize the output data for processing %%%%%%%%%%
+index = find(polar_out(:,1)<=10 &  polar_out(:,1)>=0)
+
+% this is the angle of attack and CL data for the CFD simulation 
+CFD_AoA = polar_out(index,1);
+CFD_CL = polar_out(index,2);
+
+
+% this is the angle of attack and CL data for the Thin Airfoil Simulation 
+TAS_AoA = polar_out(index,1);
+TAS_CL = 2*pi*deg2rad(polar_out(index,1));
+
+% this is the angle of attack and CL data for the Experimental Dataset 
+Exp_AoA = data0012(1:11,1);
+Exp_CL = 2*pi*deg2rad(polar_out(:,1));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
