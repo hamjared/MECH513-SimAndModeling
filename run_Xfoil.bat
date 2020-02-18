@@ -1,1 +1,1 @@
-xfoil < XFOIL_RUN.txt
+xfoil < XFOIL_RUN.txt > out.txt

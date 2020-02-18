@@ -16,7 +16,7 @@
 
 clear 
 close all;
-airfoil_number = ['NACA0021'] % choose thin airfoil NACA0021, or thick airfoil NACA0012
+airfoil_number = ['NACA0021']; % choose thin airfoil NACA0021, or thick airfoil NACA0012
 x_foil_batch_v2(airfoil_number,160000);% Assemble the CFD batch code using airfoil geometry
 dos run_Xfoil.bat; % run the CFD program at a MATLAB DOS prompt
 [polar_out] = polar_maker_xfoil_NACA('Sandia_',airfoil_number);  % assemble the computational results
@@ -53,7 +53,7 @@ legend('Section Lift Coefficient, CFD Simulated','Section Lift Coefficient, Thin
 
 
 %%%%%%%%%% Organize the output data for processing %%%%%%%%%%
-index = find(polar_out(:,1)<=max_a &  polar_out(:,1)>=0)
+index = find(polar_out(:,1)<=max_a &  polar_out(:,1)>=0);
 
 % this is the angle of attack and CL data for the CFD simulation 
 CFD_AoA = polar_out(index,1);
