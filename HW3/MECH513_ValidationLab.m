@@ -71,10 +71,10 @@ Exp_CL = [data0012(1:max_a,2); data0015(1:max_a,2); data0018(1:max_a,2); data002
 % clean up the workspace
 clear TXT        data0015   index     ans        data0018   polar_out  data0012   data0021 
 clc
-disp('Data Collection is done, type ">> who" at the MATLAB prompt to see the outputs')
-disp('CFD_AoA & CFD_CL are the angle of attack and lift coefficient as modeled using CFD')
-disp('Exp_AoA & Exp_CL are the angle of attack and lift coefficient as measured by SNL using Experiment')
-disp('TAS_AoA & TAS_CL are the angle of attack and lift coefficient as modeled using Thin Airfoil Assumption')
+% disp('Data Collection is done, type ">> who" at the MATLAB prompt to see the outputs');
+% disp('CFD_AoA & CFD_CL are the angle of attack and lift coefficient as modeled using CFD');
+% disp('Exp_AoA & Exp_CL are the angle of attack and lift coefficient as measured by SNL using Experiment');
+% disp('TAS_AoA & TAS_CL are the angle of attack and lift coefficient as modeled using Thin Airfoil Assumption');
 
 
 
